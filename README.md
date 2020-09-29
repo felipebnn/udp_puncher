@@ -13,6 +13,8 @@ After the punch is finished, a wireguard config file will be generated based on 
 
 To stop the wireguard VPN, simply press Enter on both hosts.
 
+If the host script is run without any arguments, the script will try to use a file called `config.json`.
+
 # Example Config Files
 - It is advised that you change the private and public keys used in this example as well as the `security_key` and room information as they are all publicly available here on this repo.
 
