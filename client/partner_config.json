@@ -1,0 +1,13 @@
+{
+	"stun_server": "localhost",
+	"stun_udp_port": 12345,
+	"security_key": "ABCDE",
+	"private_key": "CJNQPwJdVgDglwBR9nctgme0DLlHrJHz76/LjMNvI0Q=",
+	"user_data": {
+		"command": "join",
+		"room_name": "test_room",
+		"password": "room_password",
+		"public_key": "nPuwlIa8BktDqdAoKksxHG0A7Uotkd5SZI3ERKzJbDo="
+	},
+	"wireguard_exe": "C:\\Program Files\\WireGuard\\wireguard.exe"
+}
