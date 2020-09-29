@@ -1,5 +1,5 @@
 # UDP Puncher
-A python script that punches a UDP port and opens a Wireguard VPN on it to keep it open. For hosts behind a NAT this allows for TCP/UDP communication between two hosts without any portforwarding. It uses a STUN server that swaps hosts information around. This STUN server needs to be visible from the internet either with a public ip or port forwarding.
+A python script that punches a UDP port and opens a Wireguard VPN on it to keep it open. For hosts behind a NAT this allows for TCP/UDP communication directly between two hosts without any portforwarding. It uses a STUN server that swaps hosts information around. This STUN server needs to be visible from the internet either with a public ip or port forwarding.
 
 There are example config files for the STUN server, host A and host B in their respective folders.
 
