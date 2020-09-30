@@ -31,11 +31,11 @@ class HeartBeatThread(Thread):
 
     def run(self):
         self._running = True
-        time.sleep(2)
+        time.sleep(.5)
 
         while self._running:
             self.callback()
-            time.sleep(2)
+            time.sleep(.5)
 
     def __enter__(self):
         self.start()
@@ -56,7 +56,6 @@ class Puncher:
             except Exception as e:
                 print(e, file=sys.stderr)
                 time.sleep(0.5)
-                raise
 
         self.configure_wireguard_file(data)
         self.start_wireguard()
@@ -88,8 +87,6 @@ class Puncher:
             if USER_DATA['command'] == 'open':
                 print('room is opened')
                 with HeartBeatThread(lambda: self.send_data(command='ping')):
-                    self.sock.settimeout(4)
-
                     data = self.recv_data()
                     while 'command' in data and data['command'] != 'punch':
                         pass
