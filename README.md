@@ -50,7 +50,7 @@ The script can be altered to be used with any application that runs on UDP. By r
 # Running on linux
 It is possible to use this script to open a VPN between windows and linux hosts. Following the steps above you can remove the line `self.start_wireguard()` and run the VPN as such:
 ```bash
-./puncher.py && sudo wg-quick up config_wg
+./puncher.py; sudo wg-quick up ./config_wg
 ```
 To stop the wireguard VPN, you can run a command similar to:
 ```bash
