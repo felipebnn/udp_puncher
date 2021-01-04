@@ -1,6 +1,6 @@
 {
-	"stun_server": "localhost",
-	"stun_udp_port": 12345,
+	"stun_server_addr": "localhost",
+	"stun_server_port": 12345,
 	"security_key": "ABCDE",
 	"private_key": "CJNQPwJdVgDglwBR9nctgme0DLlHrJHz76/LjMNvI0Q=",
 	"user_data": {
