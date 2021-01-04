@@ -140,12 +140,6 @@ def get_config_data(config_file_name):
     if 'security_key' not in config:
         config['security_key'] = input("Type in the stun server security key: ")
 
-    if 'public_key' not in user_data:
-        user_data['public_key'] = input("Type in your public key: ")
-    
-    if 'private_key' not in config:
-        config['private_key'] = input("Type in your private key: ")
-
     while user_data.get('command') not in { 'open', 'join' }:
         user_data['command'] = input("Type in you room role\n    open - open a room\n    join - join an existing room\n> ").lower()
 
@@ -158,11 +152,21 @@ def get_config_data(config_file_name):
     if 'password' not in user_data:
         user_data['password'] = input("Type in your room's password: ")
 
-    if user_data['command'] == 'open' and 'subnet' not in user_data:
-        user_data['subnet'] = input("Type in your room's subnet with an @ as the last byte (empty for default 10.200.0.@/24): ") or '10.200.0.@/24'
-    
-    if 'wireguard_exe' not in config:
-        config['wireguard_exe'] = input("Using wireguard? Type in path for wireguard.exe or leave it blank: ")
+    while config.get('wireguard') not in { 'y', 'n' }:
+        config['wireguard'] = input("Using wireguard? [y/n]: ").lower()
+
+    if config['wireguard'] == 'y':
+        if 'public_key' not in user_data:
+            user_data['public_key'] = input("Type in your public key: ")
+        
+        if 'private_key' not in config:
+            config['private_key'] = input("Type in your private key: ")
+
+        if user_data['command'] == 'open' and 'subnet' not in user_data:
+            user_data['subnet'] = input("Type in your room's subnet with an @ as the last byte (empty for default 10.200.0.@/24): ") or '10.200.0.@/24'
+        
+        if 'wireguard_exe' not in config:
+            config['wireguard_exe'] = input("Type in path for wireguard.exe or leave it blank: ")
     
     with open(config_file_name + '.json', 'w') as f:
         json.dump(config, f, indent=4, sort_keys=True)
@@ -203,9 +207,11 @@ if __name__ == '__main__':
         puncher = Puncher(**config)
         data = puncher.run()
 
-        if config['wireguard_exe']:
+        if config['wireguard'] == 'y':
             configure_wireguard_file(CONFIG_FILE_NAME, config['private_key'], config['user_data'], **data)
-            start_wireguard(CONFIG_FILE_NAME, config['wireguard_exe'])
+
+            if config.get('wireguard_exe'):
+                start_wireguard(CONFIG_FILE_NAME, config['wireguard_exe'])
     except KeyboardInterrupt:
         sys.exit(-1)
     
